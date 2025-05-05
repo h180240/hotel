@@ -25,7 +25,7 @@ namespace Hotel.Controllers
             return View(await _context.Guest.ToListAsync());
         }
 
-        // GET: Guests/Details/5
+        // GET: Guests/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,8 +50,6 @@ namespace Hotel.Controllers
         }
 
         // POST: Guests/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,BirthDate,Email,Phone,Country,Password")] Guest guest)
@@ -60,12 +58,12 @@ namespace Hotel.Controllers
             {
                 _context.Add(guest);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "Reservasjons");
             }
             return View(guest);
         }
 
-        // GET: Guests/Edit/5
+        // GET: Guests/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +79,7 @@ namespace Hotel.Controllers
             return View(guest);
         }
 
-        // POST: Guests/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Guests/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,BirthDate,Email,Phone,Country,Password")] Guest guest)
@@ -116,7 +112,7 @@ namespace Hotel.Controllers
             return View(guest);
         }
 
-        // GET: Guests/Delete/5
+        // GET: Guests/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +130,7 @@ namespace Hotel.Controllers
             return View(guest);
         }
 
-        // POST: Guests/Delete/5
+        // POST: Guests/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

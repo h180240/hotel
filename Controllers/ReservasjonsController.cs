@@ -53,8 +53,6 @@ namespace Hotel.Controllers
         }
 
         // POST: Reservasjons/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReservasjonsId,FirstName,LastName,StartDate,endDate,RoomId")] Reservasjon reservasjon)
@@ -69,7 +67,7 @@ namespace Hotel.Controllers
             return View(reservasjon);
         }
 
-        // GET: Reservasjons/Edit/5
+        // GET: Reservasjons/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,9 +84,7 @@ namespace Hotel.Controllers
             return View(reservasjon);
         }
 
-        // POST: Reservasjons/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Reservasjons/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ReservasjonsId,FirstName,LastName,StartDate,endDate,RoomId")] Reservasjon reservasjon)
@@ -122,7 +118,7 @@ namespace Hotel.Controllers
             return View(reservasjon);
         }
 
-        // GET: Reservasjons/Delete/5
+        // GET: Reservasjons/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,7 +137,7 @@ namespace Hotel.Controllers
             return View(reservasjon);
         }
 
-        // POST: Reservasjons/Delete/5
+        // POST: Reservasjons/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -1,8 +1,8 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Hotel.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Hotel.Data;
 using System.Configuration;
 namespace Hotel
 {
@@ -35,19 +35,6 @@ namespace Hotel
                 .WithStaticAssets();
 
             app.Run();
-        }
-
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Configure Entity Framework and Identity
-            services.AddDbContext<HotelContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("HotelContext")));
-
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<HotelContext>()
-                .AddDefaultTokenProviders();
-
-            services.AddControllersWithViews();
         }
     }
 }
