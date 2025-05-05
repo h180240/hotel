@@ -55,13 +55,13 @@ namespace Hotel.Controllers
         // POST: Reservasjons/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservasjonsId,FirstName,LastName,StartDate,endDate,RoomId")] Reservasjon reservasjon)
+        public async Task<IActionResult> Create([Bind("ReservasjonsId,FirstName,LastName,StartDate,EndDate,RoomId")] Reservasjon reservasjon)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(reservasjon);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Takk");
             }
             ViewData["RoomId"] = new SelectList(_context.Room, "Id", "Id", reservasjon.RoomId);
             return View(reservasjon);
@@ -87,7 +87,7 @@ namespace Hotel.Controllers
         // POST: Reservasjons/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReservasjonsId,FirstName,LastName,StartDate,endDate,RoomId")] Reservasjon reservasjon)
+        public async Task<IActionResult> Edit(int id, [Bind("ReservasjonsId,FirstName,LastName,StartDate,EndDate,RoomId")] Reservasjon reservasjon)
         {
             if (id != reservasjon.ReservasjonsId)
             {
@@ -155,6 +155,11 @@ namespace Hotel.Controllers
         private bool ReservasjonExists(int id)
         {
             return _context.Reservasjon.Any(e => e.ReservasjonsId == id);
+        }
+
+        public IActionResult Takk()
+        {
+            return View();
         }
     }
 }

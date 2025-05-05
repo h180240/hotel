@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel.Controllers
-{ 
+{
     public class AccountController : Controller
     {
         // GET: Account/Login
@@ -14,39 +14,34 @@ namespace Hotel.Controllers
         // POST: Account/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(string username, string password)
+        public async Task<IActionResult> Login(string email, string password)
         {
             // Validate user credentials (this should check against your user database)
-            bool isValidUser = await ValidateUserAsync(username, password);
+            bool isValidUser = await ValidateUserAsync(email, password);
             if (isValidUser)
             {
                 // Set authentication cookie or session, as applicable
-                // For example, using claims and identity
-                // Redirect to the appropriate page after successful login
-                return RedirectToAction("Index", "Reservasjons");
+                return RedirectToAction("Create", "Reservasjons");
             }
 
-            // If we get here, something failed; redisplay the form with an error message
-            ModelState.AddModelError("", "Ugyldig brukernavn eller passord.");
+            ModelState.AddModelError("", "Ugyldig e-post eller passord.");
             return View();
         }
 
-        private async Task<bool> ValidateUserAsync(string username, string password)
+        private async Task<bool> ValidateUserAsync(string email, string password)
         {
-            // Replace with your user validation logic
-            // Example: Check the database for valid user credentials
-            // Returning true for the sake of this example.
-            return username == "test" && password == "password"; // Simplified for demonstration
+            // Replace with your logic to validate user using email
+            return email == "test@example.com" && password == "password"; // Example simplification
         }
 
         // GET: Account/Logout
         public async Task<IActionResult> Logout()
         {
-            // Add your logout logic here (e.g., clearing session or authentication cookies)
-            return RedirectToAction("Index", "Home"); // Redirect after logout
+            // Add your logout logic
+            return RedirectToAction("Index", "Home");
         }
 
-    // GET: Account/Register
+        // GET: Account/Register
         [HttpGet]
         public IActionResult Register()
         {
@@ -56,41 +51,33 @@ namespace Hotel.Controllers
         // POST: Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(string username, string password)
+        public async Task<IActionResult> Register(string email, string password)
         {
-            // Add your user registration logic here
-            // For example, validating the input and saving the new user
             if (ModelState.IsValid)
             {
-                // Check if username already exists
-                bool userExists = await CheckIfUserExistsAsync(username);
+                bool userExists = await CheckIfUserExistsAsync(email); // Updated parameter name
                 if (userExists)
                 {
-                    ModelState.AddModelError("", "Brukernavnet er allerede opptatt.");
+                    ModelState.AddModelError("", "E-postadressen er allerede opptatt."); // Updated error message
                     return View();
                 }
 
-                // Save the user (this is simplified; implement your user creation logic)
-                await CreateUserAsync(username, password);
-
-                // Redirect to the login page or home page after successful registration
+                await CreateUserAsync(email, password);
                 return RedirectToAction("Login", "Account");
             }
 
             return View();
         }
 
-        private async Task<bool> CheckIfUserExistsAsync(string username)
+        private async Task<bool> CheckIfUserExistsAsync(string email)
         {
             // Implement your logic to check if the user exists in a database
-            // Return true if user exists, false otherwise
-            return false; // This should check your user store
+            return false; // Simplified
         }
 
-        private async Task CreateUserAsync(string username, string password)
+        private async Task CreateUserAsync(string email, string password)
         {
             // Implement your logic to create a user in your user store
-            // Hash the password and save user info
         }
     }
 }

@@ -1,26 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Logg inn";
 }
-<div class="text-center">
+<div class="column">
     <h2>Logg inn</h2>
-    <form method="POST" action="@Url.Action("Create", "Reservasjons")">
-        <fieldset>
-            <div>
-                <label for="brukernavn">Brukernavn</label>
-                <input type="text" id="brukernavn" name="brukernavn"
-                       minlength="3" maxlength="20" pattern="^[a-zA-Z0-9_\-]{3,20}$" required
-                       oninvalid="this.setCustomValidity('Ikke riktig epost eller passord')"
-                       oninput="this.setCustomValidity('')">
-            </div>
-            <div>
-                <label for="passord">Passord</label>
-                <input type="password" id="passord" name="passord"
-                       minlength="8" maxlength="255" required
-                       oninvalid="this.setCustomValidity('Ikke riktig epost eller passord')"
-                       oninput="this.setCustomValidity('')">
-            </div>
-            <br>
-            <input type="submit" value="Logg inn">
+    <form class="loginform" method="POST" action="@Url.Action("Create", "Reservasjons")">
+        @Html.AntiForgeryToken()
+        <fieldset class="loginfieldset">
+            <label for="email">E-post</label>
+            <input type="text" id="email" name="email"
+                   minlength="5" maxlength="255"
+                   pattern="^[a-zA-Z0-9._%+-]+[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required
+                   oninvalid="this.setCustomValidity('Ikke riktig e-post eller passord')"
+                   oninput="this.setCustomValidity('')">
+            <label for="password">Passord</label>
+            <input type="password" id="password" name="password"
+                   minlength="8" maxlength="255" required
+                   oninvalid="this.setCustomValidity('Ikke riktig e-post eller passord')"
+                   oninput="this.setCustomValidity('')">
+            <input type="submit" value="Logg inn" class="btn btn-primary" />
         </fieldset>
     </form>
     <p>Ny bruker? <a href="@Url.Action("Create", "Guests")">Opprett bruker</a></p>
