@@ -3,7 +3,7 @@
 }
 <div class="text-center">
 	<h2>Logg inn</h2>
-	<form method="POST" action="<c:url value='/innlogging'/>">
+	<form method="POST" action="@Url.Action("Index", "Reservasjon")">
 		<fieldset>
 			<div>
 				<label for="brukernavn">Brukernavn</label>
@@ -23,7 +23,5 @@
 			<input type="submit" value="Logg inn">
 		</fieldset>
 	</form>
-	<p>Ny bruker? <a href="<c:url value='/registrering'/>">Opprett bruker</a></p>
-</div>
-		</div>
+	<p>Ny bruker? <a href="@Url.Action("Create", "Guests")">Opprett bruker</a></p>
 </div>

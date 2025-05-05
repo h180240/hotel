@@ -16,5 +16,6 @@ namespace Hotel.Data
 
         public DbSet<Hotel.Models.Guest> Guest { get; set; } = default!;
         public DbSet<Hotel.Models.Room> Room { get; set; } = default!;
+        public DbSet<Hotel.Models.Reservasjon> Reservasjon { get; set; } = default!;
     }
 }
