@@ -1,8 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+	<h2>Logg inn</h2>
+	<form method="POST" action="<c:url value='/innlogging'/>">
+		<fieldset>
+			<div>
+				<label for="brukernavn">Brukernavn</label>
+				<input type="text" id="brukernavn" name="brukernavn"
+					   minlength="3" maxlength="20" pattern="^[a-zA-Z0-9_\-]{3,20}$" required
+					   oninvalid="this.setCustomValidity('Ikke riktig epost eller passord')"
+					   oninput="this.setCustomValidity('')">
+			</div>
+			<div>
+				<label for="passord">Passord</label>
+				<input type="password" id="passord" name="passord"
+					   minlength="8" maxlength="255" required
+					   oninvalid="this.setCustomValidity('Ikke riktig epost eller passord')"
+					   oninput="this.setCustomValidity('')">
+			</div>
+			<br>
+			<input type="submit" value="Logg inn">
+		</fieldset>
+	</form>
+	<p>Ny bruker? <a href="<c:url value='/registrering'/>">Opprett bruker</a></p>
+</div>
+		</div>
 </div>
