@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Logg inn";
+}
+<div class="text-center">
+    <h2>Logg inn</h2>
+    <form method="POST" action="@Url.Action("Create", "Reservasjons")">
+        <fieldset>
+            <div>
+                <label for="brukernavn">Brukernavn</label>
+                <input type="text" id="brukernavn" name="brukernavn"
+                       minlength="3" maxlength="20" pattern="^[a-zA-Z0-9_\-]{3,20}$" required
+                       oninvalid="this.setCustomValidity('Ikke riktig epost eller passord')"
+                       oninput="this.setCustomValidity('')">
+            </div>
+            <div>
+                <label for="passord">Passord</label>
+                <input type="password" id="passord" name="passord"
+                       minlength="8" maxlength="255" required
+                       oninvalid="this.setCustomValidity('Ikke riktig epost eller passord')"
+                       oninput="this.setCustomValidity('')">
+            </div>
+            <br>
+            <input type="submit" value="Logg inn">
+        </fieldset>
+    </form>
+    <p>Ny bruker? <a href="@Url.Action("Register", "Account")">Opprett bruker</a></p>
+</div>
