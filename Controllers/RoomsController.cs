@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hotel.Data;
-using Hotel.Models;
+using HotelLib.Models;
 
 namespace Hotel.Controllers
 {
@@ -25,7 +25,7 @@ namespace Hotel.Controllers
             return View(await _context.Room.ToListAsync());
         }
 
-        // GET: Rooms/Details/5
+        // GET: Rooms/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -65,7 +65,7 @@ namespace Hotel.Controllers
             return View(room);
         }
 
-        // GET: Rooms/Edit/5
+        // GET: Rooms/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +81,7 @@ namespace Hotel.Controllers
             return View(room);
         }
 
-        // POST: Rooms/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Rooms/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,NumberOfBeds,RoomSize,Quality,Reserved")] Room room)
@@ -116,7 +114,7 @@ namespace Hotel.Controllers
             return View(room);
         }
 
-        // GET: Rooms/Delete/5
+        // GET: Rooms/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +132,7 @@ namespace Hotel.Controllers
             return View(room);
         }
 
-        // POST: Rooms/Delete/5
+        // POST: Rooms/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

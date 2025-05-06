@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hotel.Data;
-using Hotel.Models;
+using HotelLib.Models;
 
 namespace Hotel.Controllers
 {
@@ -26,7 +26,7 @@ namespace Hotel.Controllers
             return View(await hotelContext.ToListAsync());
         }
 
-        // GET: Reservasjons/Details/5
+        // GET: Reservasjons/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -63,10 +63,11 @@ namespace Hotel.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Takk");
             }
-            ViewData["RoomId"] = new SelectList(_context.Room, "Id", "Id", reservasjon.RoomId);
-            return View(reservasjon);
-        }
 
+            // If we got to this point, something failed, redisplay form
+            ViewData["RoomId"] = new SelectList(_context.Room, "Id", "NumberOfBeds", reservasjon.RoomId); // Populate again
+            return View(reservasjon); // Return the model with errors
+        }
         // GET: Reservasjons/Edit
         public async Task<IActionResult> Edit(int? id)
         {

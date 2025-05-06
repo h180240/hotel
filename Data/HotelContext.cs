@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Hotel.Models;
+using HotelLib.Models;
 
 namespace Hotel.Data
 {
@@ -14,8 +14,8 @@ namespace Hotel.Data
         {
         }
 
-        public DbSet<Hotel.Models.Guest> Guest { get; set; } = default!;
-        public DbSet<Hotel.Models.Room> Room { get; set; } = default!;
-        public DbSet<Hotel.Models.Reservasjon> Reservasjon { get; set; } = default!;
+        public DbSet<HotelLib.Models.Guest> Guest { get; set; } = default!;
+        public DbSet<HotelLib.Models.Room> Room { get; set; } = default!;
+        public DbSet<HotelLib.Models.Reservasjon> Reservasjon { get; set; } = default!;
     }
 }

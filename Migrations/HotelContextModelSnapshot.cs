@@ -62,7 +62,7 @@ namespace Hotel.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Guest");
+                    b.ToTable("Guest", (string)null);
                 });
 
             modelBuilder.Entity("Hotel.Models.Reservasjon", b =>
@@ -94,7 +94,7 @@ namespace Hotel.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Reservasjon");
+                    b.ToTable("Reservasjon", (string)null);
                 });
 
             modelBuilder.Entity("Hotel.Models.Room", b =>
@@ -119,7 +119,7 @@ namespace Hotel.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Room");
+                    b.ToTable("Room", (string)null);
                 });
 
             modelBuilder.Entity("Hotel.Models.Reservasjon", b =>
